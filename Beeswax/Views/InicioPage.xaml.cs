@@ -1,9 +1,10 @@
-namespace Beeswax.Views;
-
-public partial class InicioPage : ContentPage
+namespace Beeswax.Views
 {
-	public InicioPage()
-	{
-		InitializeComponent();
-	}
+    public partial class InicioPage : ContentPage
+    {
+        public InicioPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

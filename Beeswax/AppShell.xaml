@@ -6,10 +6,8 @@
     xmlns:local="clr-namespace:Beeswax.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="Beeswax">
-
     <ShellContent
-        Title="Home"
+        Title="Login"
         ContentTemplate="{DataTemplate local:LoginPage}"
         Route="LoginPage" />
-
 </Shell>

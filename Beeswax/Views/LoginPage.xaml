@@ -2,75 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beeswax.Views.LoginPage"
-             Title="" Background="White">
+             BackgroundColor="#f1a544">
     <ContentPage.Content>
         <Grid>
-            
-            
-
-            <StackLayout>
-                <Label Text="Login"
-                    FontSize="40"
-                    TextColor="Black"
-                    HorizontalOptions="Start"
-                    VerticalOptions="Start"
-                    Margin="30,100,0,20" FontFamily="Vernarda"/>
-
-            </StackLayout>
-            <StackLayout Padding="10" VerticalOptions="Center" >
-
-
-                <Frame CornerRadius="20" BorderColor="#efa625" Padding="20" BackgroundColor="#f1a544" HasShadow="True" Margin="15,20,15,10">
+            <Image Source="fondo.png" Aspect="AspectFill" Opacity="0.6" />
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Label Text="LOGIN" FontSize="50" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="Vernarda" TextColor="Black" />
+                <Image Source="logo.png" HeightRequest="120" WidthRequest="120" Margin="0,50,0,20" />
+                <Frame CornerRadius="20" Padding="20" BackgroundColor="#f1a544" Margin="15,20,15,10">
                     <StackLayout>
-                        <StackLayout>
-                            <Label Text="Usuario"
-                                   FontSize="Medium"
-                                   TextColor="Black"
-                                   FontFamily="Vernarda"/>
-                            <Entry x:Name="UsuarioEntry"
-                                   Placeholder="Ingrese su usuario"
-                                   PlaceholderColor="Wheat"
-                                   FontFamily="Vernarda"/>
-                        </StackLayout>
-
-                        <BoxView HeightRequest="2"
-                                 BackgroundColor="#efa625"
-                                 Margin="0,20"/>
-
-                        <StackLayout>
-                            <Label Text="Contraseña"
-                                   FontSize="Medium"
-                                   TextColor="Black"
-                                   FontFamily="Vernarda"/>
-                            <Entry x:Name="ContrasenaEntry"
-                                   Placeholder="Ingrese la contraseña"
-                                   PlaceholderColor="Wheat"
-                                   IsPassword="True"
-                                   FontFamily="Vernarda"/>
-                        </StackLayout>
+                        <Entry x:Name="UsuarioEntry" Placeholder="Ingresa tu usuario" PlaceholderColor="Black" FontSize="Medium" TextColor="Black" BackgroundColor="#f1a544" FontFamily="Vernarda" />
+                        <BoxView HeightRequest="1" BackgroundColor="Black" Margin="0,5,0,15" />
+                        <Entry x:Name="ContrasenaEntry" Placeholder="Ingresa tu contraseña" PlaceholderColor="Black" IsPassword="True" FontSize="Medium" TextColor="Black" BackgroundColor="#f1a544" FontFamily="Vernarda" />
+                        <BoxView HeightRequest="1" BackgroundColor="Black" Margin="0,5,0,15" />
+                        <Button Text="ACEPTAR" TextColor="White" Clicked="OnLoginClicked" BackgroundColor="#ef6c3e" WidthRequest="200" HeightRequest="50" CornerRadius="25" FontFamily="Vernarda" />
                     </StackLayout>
                 </Frame>
-
-                <BoxView HeightRequest="2"
-                         BackgroundColor="#f19b27"
-                         Margin="20,20"/>
-
-                <Button Text="Iniciar Sesión"
-                        TextColor="White"
-                        Clicked="OnLoginClicked"
-                        BackgroundColor="#efa625"
-                        BorderColor="#efa625"
-                        WidthRequest="200"
-                        HeightRequest="50"
-                        CornerRadius="15"
-                        Padding="10"
-                        HorizontalOptions="Center" FontFamily="Vernarda"/>
-
-                <Label Text="Inicia Sesion para continuar"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
-                       TextColor="Black"
-                       Margin="0,20,0,0" FontFamily="Vernarda"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

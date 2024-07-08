@@ -1,25 +1,25 @@
-namespace Beeswax.Views;
-
-public partial class LoginPage : ContentPage
+namespace Beeswax.Views
 {
-	public LoginPage()
-	{
-		InitializeComponent();
-	}
-
-    private async void OnLoginClicked(object sender, EventArgs e)
+    public partial class LoginPage : ContentPage
     {
-        string usuario = UsuarioEntry.Text;
-        string contrasena = ContrasenaEntry.Text;
-
-        if (usuario == "admin" && contrasena == "pollito")
+        public LoginPage()
         {
-            // Navegar a la página principal después de iniciar sesión correctamente
-            await Navigation.PushAsync(new ProductPage());
+            InitializeComponent();
         }
-        else
+
+        private async void OnLoginClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Error", "Usuario o contraseña incorrectos", "OK");
+            string usuario = UsuarioEntry.Text;
+            string contrasena = ContrasenaEntry.Text;
+
+            if (usuario == "admin" && contrasena == "pollito")
+            {
+                Application.Current.MainPage = new InicioShell();
+            }
+            else
+            {
+                await DisplayAlert("Error", "Usuario o contraseña incorrectos", "OK");
+            }
         }
     }
 }
