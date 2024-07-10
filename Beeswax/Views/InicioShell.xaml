@@ -15,8 +15,8 @@
         <Tab Title="Compra" Icon="cart.png">
             <ShellContent
                 Title=""
-                ContentTemplate="{DataTemplate local:Pagina2}"
-                Route="Pagina2" />
+                ContentTemplate="{DataTemplate local:ShoppPage}"
+                Route="ShoppPage" />
         </Tab>
     </TabBar>
 </Shell>

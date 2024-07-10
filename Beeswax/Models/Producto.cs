@@ -2,7 +2,7 @@
 
 namespace Beeswax.Models
 {
-    [SQLite.Table("producto")]
+    [Table("producto")]
     public class Producto
     {
         [PrimaryKey, AutoIncrement]
@@ -14,5 +14,7 @@ namespace Beeswax.Models
         public int stock { get; set; }
         public string imagen { get; set; }
 
+        [Ignore]
+        public int Quantity { get; set; }
     }
 }
