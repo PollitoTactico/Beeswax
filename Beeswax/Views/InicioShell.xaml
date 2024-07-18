@@ -18,5 +18,21 @@
                 ContentTemplate="{DataTemplate local:ShoppPage}"
                 Route="ShoppPage" />
         </Tab>
+        <Tab Title="Carrito" Icon="carrito.png">
+            <ShellContent
+                Title=""
+                ContentTemplate="{DataTemplate local:CompraPage}"
+                Route="CompraPage" />
+        </Tab>
+
+        <Tab Title="Gestion" Icon="edit.png">
+            <ShellContent
+        Title=""
+        ContentTemplate="{DataTemplate local:ManageProductPage}"
+        Route="ManageProductPage" />
+
+        </Tab>
+
+
     </TabBar>
 </Shell>

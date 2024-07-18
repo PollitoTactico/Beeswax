@@ -16,7 +16,7 @@ namespace Beeswax.Service
             {
                 using var cliente = new HttpClient();
                 var response = await cliente.GetAsync($"{urlApi}/GetAll");
-                response.EnsureSuccessStatusCode(); // Asegura que la respuesta es exitosa
+                response.EnsureSuccessStatusCode(); 
 
                 var responseBody = await response.Content.ReadAsStringAsync();
                 if (!string.IsNullOrWhiteSpace(responseBody))
@@ -31,7 +31,7 @@ namespace Beeswax.Service
             }
             catch (Exception ex)
             {
-                // Manejo de errores, puedes registrar el error o lanzar una excepción personalizada
+                
                 Console.WriteLine($"Error al obtener productos: {ex.Message}");
                 return new List<Producto>();
             }
@@ -118,23 +118,30 @@ namespace Beeswax.Service
                 return null;
             }
         }
-
         public async Task<bool> Eliminar(int id)
         {
             try
             {
                 using var cliente = new HttpClient();
                 var response = await cliente.DeleteAsync($"{urlApi}/Delete/{id}");
-                response.EnsureSuccessStatusCode();
 
-                var responseBody = await response.Content.ReadAsStringAsync();
-                var success = JsonSerializer.Deserialize<bool>(responseBody);
+                if (!response.IsSuccessStatusCode)
+                {
+                    var responseBody = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Error al eliminar producto: {response.ReasonPhrase}, Detalles: {responseBody}");
+                    return false;
+                }
 
-                return success;
+                return response.StatusCode == System.Net.HttpStatusCode.NoContent;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error al eliminar producto: {ex.Message}");
+                return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al eliminar producto: {ex.Message}");
+                Console.WriteLine($"Error inesperado: {ex.Message}");
                 return false;
             }
         }

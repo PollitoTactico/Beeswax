@@ -4,6 +4,6 @@ namespace Beeswax.Service
 {
     public interface ProductService
     {
-        public Task<IEnumerable<Producto>> Obtener();
+        public Task<List<Producto>> Obtener();
     }
 }

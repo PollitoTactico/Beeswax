@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Beeswax.ViewModel
 {
-    class Product : ObservableObject
+    public class Product : ObservableObject
     {
 
         private int _quantity;

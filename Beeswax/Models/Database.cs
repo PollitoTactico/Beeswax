@@ -18,11 +18,39 @@ namespace Beeswax.Models
             var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Beeswax.db");
             _database = new SQLiteAsyncConnection(databasePath);
             await _database.CreateTableAsync<Producto>();
+            await _database.CreateTableAsync<Compra>();
+            await _database.CreateTableAsync<CompraDetalle>();
         }
 
-        public static Task<List<Producto>> GetProductosAsync()
+        public static async Task<int> SaveCompraAsync(Compra compra)
         {
-            return _database.Table<Producto>().ToListAsync();
+            try
+            {
+                await Init();
+                return await _database.InsertAsync(compra);
+            }
+                
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al guardar la compra: {ex.Message}");
+                return 0;
+            }
+        }
+
+        public static Task<int> SaveCompraDetalleAsync(CompraDetalle detalle)
+        {
+            return _database.InsertAsync(detalle);
+        }
+
+        public static Task<List<Compra>> GetComprasAsync()
+        {
+            return _database.Table<Compra>().ToListAsync();
+        }
+
+        public static Task<List<CompraDetalle>> GetCompraDetallesAsync(int compraId)
+        {
+            return _database.Table<CompraDetalle>().Where(cd => cd.CompraId == compraId).ToListAsync();
         }
 
         public static Task<Producto> GetProductoAsync(int id)
@@ -30,21 +58,11 @@ namespace Beeswax.Models
             return _database.Table<Producto>().FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public static Task<int> SaveProductoAsync(Producto producto)
+        public static Task<int> DeleteCompraAsync(int id)
         {
-            if (producto.Id != 0)
-            {
-                return _database.UpdateAsync(producto);
-            }
-            else
-            {
-                return _database.InsertAsync(producto);
-            }
+            return _database.DeleteAsync<Compra>(id);
         }
 
-        public static Task<int> DeleteProductoAsync(Producto producto)
-        {
-            return _database.DeleteAsync(producto);
-        }
     }
 }
+

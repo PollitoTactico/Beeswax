@@ -67,6 +67,9 @@
 	  <Compile Update="Views\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\CompraPage.xaml.cs">
+	    <DependentUpon>CompraPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ShoppPage.xaml.cs">
 	    <DependentUpon>ShoppPage.xaml</DependentUpon>
 	  </Compile>
@@ -80,6 +83,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CompraPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ManageProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ShoppPage.xaml">

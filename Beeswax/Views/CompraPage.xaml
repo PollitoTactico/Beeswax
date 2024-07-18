@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Beeswax.ViewModel"
+             x:Class="Beeswax.Views.CompraPage"
+             Title="">
+    <ContentPage.BindingContext>
+        <vm:CompraPageViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Grid>
+            <Image Source="fondo.png" Aspect="AspectFill" Opacity="0.8" />
+            <VerticalStackLayout>
+                <Frame BackgroundColor="#f1a544" CornerRadius="20" Padding="10" Margin="10,10,10,20">
+                    <HorizontalStackLayout>
+                        <Label Text="CARRITO DE COMPRAS" FontSize="23" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" TextColor="White" />
+                        <Image Source="logo.png" WidthRequest="50" HeightRequest="50" HorizontalOptions="End" VerticalOptions="End" Margin="15,5,0,10" />
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <CollectionView x:Name="ComprasCollectionView" ItemsSource="{Binding Compras}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="10" Padding="10" BackgroundColor="#f1a544" CornerRadius="10">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy HH:mm}'}" FontAttributes="Bold" TextColor="Black"/>
+                                    <Label Text="{Binding Total, StringFormat='Total: ${0:F2}'}" TextColor="Black"/>
+                                    <CollectionView ItemsSource="{Binding Detalles}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout>
+                                                    <Label Text="{Binding ProductoNombre}" FontAttributes="Bold" TextColor="Black"/>
+                                                    <Label Text="{Binding Cantidad, StringFormat='Cantidad: {0}'}" TextColor="Black"/>
+                                                    <Label Text="{Binding Precio, StringFormat='Precio Unitario: ${0:F2}'}" TextColor="Black"/>
+                                                    <Label Text="{Binding PrecioTotal, StringFormat='Precio Total: ${0:F2}'}" TextColor="Black"/>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                    <HorizontalStackLayout>
+                                        <Button Text="Eliminar" BackgroundColor="#FF7043" Command="{Binding BindingContext.EliminarCompraCommand, Source={x:Reference ComprasCollectionView}}" CommandParameter="{Binding .}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
+
+

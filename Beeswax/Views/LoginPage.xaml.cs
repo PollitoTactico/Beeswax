@@ -14,7 +14,7 @@ namespace Beeswax.Views
 
             if (usuario == "admin" && contrasena == "pollito")
             {
-                Application.Current.MainPage = new InicioShell();
+                Application.Current.MainPage = new InicioShell(); 
             }
             else
             {

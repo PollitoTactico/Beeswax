@@ -5,6 +5,13 @@ namespace Beeswax.Models
     [Table("producto")]
     public class Producto
     {
+        public Producto()
+        {
+            Quantity = 0;
+            precio = 0;
+            stock = 0;
+
+        }
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string nombreProducto { get; set; }

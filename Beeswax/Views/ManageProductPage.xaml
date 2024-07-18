@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Beeswax.ViewModel"
+             x:Class="Beeswax.Views.ManageProductPage"
+             x:Name="Page">
+
+    <ContentPage.BindingContext>
+        <vm:ManageProductPageViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Grid>
+            <Image Source="fondo.png" Aspect="AspectFill" Opacity="0.6" />
+            <StackLayout Padding="10" Spacing="20">
+                <Frame BackgroundColor="#f1a544" CornerRadius="20" Padding="10" Margin="0,0,0,20">
+                    <HorizontalStackLayout>
+                        <Label Text="GESTION PRODUCTOS" FontSize="23" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" TextColor="White" />
+                        <Image Source="logo.png" WidthRequest="50" HeightRequest="50" HorizontalOptions="End" VerticalOptions="End" Margin="15,5,0,10" />
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#FFCC80" CornerRadius="20" Padding="0">
+                    <Entry x:Name="SearchEntry" Placeholder="Buscar por nombre" BackgroundColor="#FFCC80" TextColor="Black" Margin="5,0" />
+                </Frame>
+                <Button Text="Buscar" Command="{Binding BuscarCommand}" CommandParameter="{Binding Text, Source={x:Reference SearchEntry}}" BackgroundColor="#FF9900" TextColor="White" CornerRadius="20" />
+
+                <CollectionView ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" Margin="10" BackgroundColor="#FFCC80" CornerRadius="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding imagen}" WidthRequest="80" HeightRequest="80" Grid.Column="0" />
+                                    <StackLayout Grid.Column="1" VerticalOptions="Center" Padding="10">
+                                        <Label Text="{Binding nombreProducto}" FontAttributes="Bold" FontSize="Medium" />
+                                        <Label Text="{Binding precio, StringFormat='${0}'}" FontSize="Small" />
+                                        <Label Text="{Binding stock, StringFormat='UNIDADES: {0}'}" FontSize="Small" />
+                                    </StackLayout>
+
+                                    
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Button Text="Nuevo Producto" Command="{Binding NuevoProductoCommand}" BackgroundColor="#FF9900" TextColor="White" CornerRadius="20" />
+
+                <StackLayout IsVisible="{Binding IsEditing}" Spacing="10">
+                    <Entry Placeholder="Nombre del Producto" Text="{Binding SelectedProduct.nombreProducto}" />
+                    <Entry Placeholder="Descripción" Text="{Binding SelectedProduct.descripcion}" />
+                    <Entry Placeholder="Precio" Text="{Binding SelectedProduct.precio}" />
+                    <Entry Placeholder="Categoría" Text="{Binding SelectedProduct.categoria}" />
+                    <Entry Placeholder="Stock" Text="{Binding SelectedProduct.stock}" />
+                    <Entry Placeholder="Imagen URL" Text="{Binding SelectedProduct.imagen}" />
+
+                    <Button Text="Guardar" Command="{Binding GuardarCommand}" BackgroundColor="#FF9900" TextColor="White" CornerRadius="20" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
+
+
+
+
+
+
+
+
+
